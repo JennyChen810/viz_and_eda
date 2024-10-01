@@ -1,4 +1,4 @@
-viz_i
+viz_ii
 ================
 Jianing Chen
 2024-09-26
@@ -149,4 +149,60 @@ weather_df %>%
     ## Warning: Removed 17 rows containing missing values or values outside the scale range
     ## (`geom_point()`).
 
-![](viz_ii_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](viz_ii_files/figure-gfm/unnamed-chunk-4-1.png)<!-- --> \## Themes
+
+shift the legend.
+
+``` r
+weather_df %>%
+  ggplot(aes(x=tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from ronoaa package; temperatures in 2017"
+  )+
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE)+
+  theme(legend.position = "bottom")
+```
+
+    ## Warning: Removed 17 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+Change the overall theme.
+
+``` r
+weather_df %>%
+  ggplot(aes(x=tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from ronoaa package; temperatures in 2017"
+  )+
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE)+
+    theme_minimal() +
+     theme(legend.positions = "bottom")
+```
+
+    ## Warning in plot_theme(plot): The `legend.positions` theme element is not
+    ## defined in the element hierarchy.
+
+    ## Warning: Removed 17 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](viz_ii_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+``` r
+     ##theme_classic()
+     ##ggthemes::theme_economist()
+     ##ggthemes::theme_excel()
+```

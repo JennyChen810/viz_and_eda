@@ -1,5 +1,5 @@
 ---
-title: "viz_i"
+title: "viz_ii"
 author: "Jianing Chen"
 date: "2024-09-26"
 output: github_document
@@ -91,6 +91,50 @@ weather_df %>%
   )
   
 ```
+## Themes
+
+shift the legend.
+
+```{r}
+weather_df %>%
+  ggplot(aes(x=tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from ronoaa package; temperatures in 2017"
+  )+
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE)+
+  theme(legend.position = "bottom")
+
+```
+
+Change the overall theme.
+
+```{r}
+weather_df %>%
+  ggplot(aes(x=tmin, y = tmax, color = name)) +
+  geom_point(alpha = .5) +
+  labs(
+    title = "Temperature plot",
+    x = "Minimum daily temperature (c)",
+    y = "Maximum daily temperature (c)",
+    caption = "Data from ronoaa package; temperatures in 2017"
+  )+
+  viridis::scale_color_viridis(
+    name = "Location",
+    discrete = TRUE)+
+    theme_minimal() +
+     theme(legend.positions = "bottom")
+     ##theme_classic()
+     ##ggthemes::theme_economist()
+     ##ggthemes::theme_excel()
+```
+
+
 
 
 
