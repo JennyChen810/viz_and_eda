@@ -338,4 +338,34 @@ weather_df%>%
   facet_grid(.~name)
 ```
 
-![](viz_ii_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](viz_ii_files/figure-gfm/unnamed-chunk-12-1.png)<!-- --> \## Revisit
+the pups
+
+Data from the FAS study.
+
+``` r
+pup_data=
+  read.csv("./data/FAS_pups.csv") %>%
+  janitor::clean_names() %>%
+  mutate(sex= recode(sex,`1`= "male", `2`= "female"))
+
+litters_data = 
+  read.csv("./data/FAS_litters.csv") %>%
+  janitor::clean_names() %>%
+  separate(group, into=c("dose","day_of_tx"),sep=3)
+
+fas_data = left_join(pup_data, litters_data, by="litter_number")
+
+##fas_data %>%
+##select(dose,day_of_tx, starts_with("pd_")) %>%
+ ## pivot_longer(
+ ##   pd_ears:pd_walk,
+ ##  names_to= "outcome",
+  ##  values_to = "pn_day"
+ ## ) %>%
+ ## drop_na()%>%
+ # mutate(outcome = forcats::fct_reorder("pd_ears","pd_pivot","pd_walk","pd_eyes")) %>%
+ # ggplot(aes(x=dose, y = outcome)) +
+ # geom_violin()+
+ # facet_grid(day_of_tx ~ outcome)
+```
